@@ -1,0 +1,19 @@
+name: Hello World Action
+description: A test GitHub Action that prints a greeting with the provided name using a Bash script
+author: Veniamin Arefev
+inputs:
+  name:
+    description: 'The name to include in the greeting'
+    required: true
+    default: 'World'
+outputs:
+  greeting:
+    description: 'The generated greeting message'
+    value: ${{ steps.set-output.outputs.greeting }}
+runs:
+  using: composite
+  steps:
+    - name: Run Greeting Script
+      shell: bash
+      run: bash ${GITHUB_ACTION_PATH}/script.sh "${{ inputs.name }}"
+      id: set-output
