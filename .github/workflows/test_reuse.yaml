@@ -1,0 +1,12 @@
+name: Call Hello World Workflow
+on:
+  push:
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Veniamin-Arefev/buildman_ci/.github/workflows/reuse_ci.yaml@v2
+        with:
+          name: 'Bob'
+        id: greet
+      - run: echo "${{ steps.greet.outputs.message }}"
